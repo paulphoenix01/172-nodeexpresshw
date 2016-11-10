@@ -47,6 +47,13 @@ app.put('/lions/:id', function(req, res) {
 
 app.set('port', (process.env.PORT || 8080));
 
+app.delete('/lions/:id', function(req,res){
+	var lion = _.findIndex(lions, {id:req.params.id});
+	lions.splice(lion,1);
+
+	res.json(lion);
+});
+
 app.listen(app.get('port'), function() {
  console.log("Node app is running at localhost:" + app.get('port'))
 });
